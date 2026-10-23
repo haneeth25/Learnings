@@ -1,0 +1,82 @@
+Typed Dictonary :- 
+from typing import TypedDict 
+
+class Movie(TypedDict):
+    name : str
+    year : int 
+
+movie = Movie(name = "Avenger Endgame", year=2019)
+
+Type Safety :- We defined explicitly what the data structure are , reducing runtime errors 
+Enhanced Readability :- Makes Debugging easier and make code more understandable 
+-----------------------------------------------------------------------------------------------------
+
+Unions :- 
+from typing import Unions
+
+def sqaure(x: Union[int, float]) -> float:
+    return x*x 
+
+x = 5 -> This is fine because it is an integer 
+x = 1.234 -> This is also fine because it is a float 
+x = "I am a string" -> This will fail because it is a string 
+
+Unions lets you say that a value can be more than one type 
+-----------------------------------------------------------------------------------------------------------
+
+Optional :- 
+from typing import Optional 
+
+def nice_message(name: Optional[str]) -> None:
+    if name is None:
+        print("Hey random person!")
+    else: 
+        print(f"Hi there, {name} ! ")
+
+In this case "name" can be either a String or None 
+--------------------------------------------------------------------------------------------------------------
+
+Any :- 
+from typing import Any 
+
+def print_value(x: Any):
+    print(x)
+
+print_value("I pretend to be batman")
+-----------------------------------------------------------------------------------------------------------------
+
+Lambda :- 
+
+sqaure = lambda x : x*x 
+sqaure(10) 
+
+nums = [1,2,3,4]
+sqaures = list(map(lambda x: x*x,nums))
+
+lambda is just a shortcut to writing the small functions 
+------------------------------------------------------------------------------------------------------------------
+
+Annotated :- Provides additional context to variable without affecting the type itself
+If we consider email we will take str data type , but all string are not emails 
+We have some rules we put that using Annotated 
+Annotated[dataType , Metadata/additional context]
+
+email = Annotated[str,"This has to be a valid email format"]
+
+print(email.__metadata__)
+
+O/p :- ('This has to be a valid email format',)
+------------------------------------------------------------------------------------------------------------------------
+
+Sequence :- 
+
+To automatically handle the state updates for sequences such as by adding new messages to chat history 
+
+----------------------------------------------------------------------------------------------------------------------
+
+Reducer Function :- 
+
+A reducer function tells LangGraph how to combine a node's returned state update with the existing state. 
+Example: Without a reducer, messages = ["Hi"] updated with ["Hello"] becomes ["Hello"] (old value replaced). 
+With add_messages, messages = [HumanMessage("Hi")] updated with [AIMessage("Hello")] becomes [HumanMessage("Hi"), AIMessage("Hello")] (messages merged into chat history).
+--------------------------------------------------------------------------------------------------------------------------------------------------
